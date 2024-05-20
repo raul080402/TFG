@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNOMED-UMU</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgb(192, 192, 192);
+            text-align: left;
+            background-color: rgb(230,230,230);
+        }
+        
+        .cabecera {
+            background-color: #fff;
+            padding: 1.05em 0;
+        }
+        
+        .franja-pie {
+            background-color: #8d1300;
+            padding: 2.5em 2.5em 5em 2.5em;
+            color: #fff;
+            position: absolute;
+            width: 100%; 
+        }
+        
+        #logo-snomed img {
+            max-width: 100px;
+            height: auto; 
+        }
+        
+        .idioma{
+            background-color: lightgray;
+            height: 40px;
+        }
+        
+        .franja-roja{
+            background-color: #8d1300;
+            height: 40px;
+        }
+      
+		.search-box {
+    		margin-left: 20px;
+		}
+
+		.search-box input[type="text"] {
+    		padding: 8px;
+    		border: 1px solid #ccc;
+    		border-radius: 5px;
+		}
+
+		.search-box button {
+    		padding: 8px 16px;
+    		background-color: #007bff;
+    		color: #fff;
+    		border: none;
+    		border-radius: 5px;
+    		cursor: pointer;
+		}
+    	.main-content {
+      		text-align: center;
+    	}
+    
+    	.main-content h1 {
+      		margin-bottom: 20px;
+    	}
+    
+    	.button-container {
+      		margin-top: 30px;
+    	}
+    
+    	.button-container a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    
+    .button-container a:hover {
+      background-color: #0056b3;
+    }
+    
+    
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: #fff; /* Fondo blanco */
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sutil sombra */
+    padding: 0.5rem 0; /* Espacio entre los elementos */
+    border-radius: 0.25rem; /* Bordes redondeados */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+	.dropdown:hover .dropdown-menu {
+    	display: block;
+    	opacity: 1;
+    	transform: translateY(0);
+	}
+
+	.dropdown-item {
+    	display: block;
+    	width: 100%;
+    	padding: 0.5rem 1rem;
+    	clear: both;
+    	font-weight: 400;
+    	color: #212529; /* Color del texto */
+    	text-align: inherit;
+    	white-space: nowrap;
+    	background-color: transparent;
+    	border: 0;
+    	transition: background-color 0.3s;
+	}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b; 
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+
+	.panel {
+    	max-width: 1100px;
+    	width: 100%;
+    	margin: 0 auto; 
+    	display: flex;
+    	flex-direction: column; 
+    	justify-content: center;
+    	border: 1px solid #ccc;
+    	border-radius: 5px;
+    	overflow: hidden;
+    	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    	padding: 20px;
+    	background-color: white;
+    	margin-top: 20px;
+    	margin-bottom: 20px;
+	}
+
+ 		.panel-left {
+	 		max-width: 500px;
+    		width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 2px solid #ccc;
+        }
+
+ 		.panel-right {
+	 		max-width: 650px;
+    		width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right:50px;
+        }
+
+		.snomed-logo {
+    		height: 200px;
+    		width: auto; 
+    		margin-top: 40px;
+    		margin-bottom: 10px;
+		}
+
+		.search-box {
+    		margin-left: 20px;
+		}
+
+		.search-box input[type="text"] {
+    		padding: 8px;
+    		border: 1px solid #ccc;
+    		border-radius: 5px;
+		}
+
+		.search-box button {
+    		padding: 8px 16px;
+    		background-color: #005164;
+    		color: #fff;
+    		border: none;
+    		border-radius: 5px;
+    		cursor: pointer;
+    		margin: 10px;
+		}
+ 		.separator {
+            height: 100%;
+            width: 2px;
+            background-color: #ccc;
+        }
+        .btn-primary {
+    		background-color: #005164;
+    		border-color: #002028;
+    		color: #FFF;
+    		width: 150px;
+		}
+		.custom-input {
+    		margin-bottom: 40px;
+    		padding: 10px;
+    		border-radius: 5px;
+    		border: 2px solid black;
+    		width: 100%; /* Cambiado a 100% */
+    		background-color: lightgray;
+		}
+
+		.custom-input:focus {
+    		background-color: white;
+		}
+		
+		.title-container {
+			padding-top: 50px;
+			color: black;
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    		height: 100%;
+		}
+
+		.destacado {
+    		color: #007f9d;
+    		font-size: 18px;
+    		font-weight: bold;
+		}
+		
+		.destacado-resultado {
+    		color: #005164;
+    		font-size: 15px;
+    		font-weight: bold;
+		}
+		.termino-clinico{
+			margin-top: 30px;
+			color: black; 
+			font-weight: bold;
+		}
+		.resultado {
+    		text-align: center;
+		}
+    </style>
+ </head>
+<body>
+
+
+<header class="header">
+    <div class="cabecera">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-center text-md-left" id="logo-snomed">
+                    <a class="um-lr-gtm-principal-cabecera-logo-um" href="/" itemprop="url" data-senna-off="true">
+                        <img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU">
+                    </a>
+                </div>
+                <div class="col-md-4 text-center text-md-right" id="logo-um"> <!-- Añadido 'text-center' y 'text-md-right' -->
+                    <a class="um-lr-gtm-principal-cabecera-logo-um" href="/" itemprop="url" data-senna-off="true">
+                        <img itemprop="logo" src="https://www.um.es/o/um-lr-principal-um-home-theme/images/logo-um.png" alt="Logo Universidad de Murcia">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="franja-roja">
+    <div class="row align-items-center justify-content-end" style="padding-top: 5px;">
+        <div class="col-md-2">
+            <div class="dropdown accesos__p accesos__p--margen" id="language-selector">
+                <a class="pb-0 pt-0 menu-accesible__b dropdown-toggle" role="button" href="#" id="language-selector__button" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                    Español
+                    <i class="fas fa-chevron-down" aria-hidden="true" title="Desplegar submenú de idioma"></i>
+                    <span class="sr-only">Desplegar submenú de idioma</span>
+                </a>
+                <div class="dropdown-menu menu-accesible__c" aria-labelledby="language-selector__button">
+                    <a class="dropdown-item" href="#" onclick="changeLanguageDropdown()">Inglés</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-left">
+               <div class="snomed">
+            		<a class="snomed" href="/" itemprop="url" data-senna-off="true">
+                		<img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU" class="snomed-logo">
+            		</a>
+        		</div>
+        		<h2 style="font-weight: bold; font-size: 1.5rem; color: black;" id="titulo">¡Bienvenidos a SNOMED-UMU!</h2>
+        		<div class="search-box" style="text-align: center;">
+            		<p style="color: black; margin-top: 70px;" id="titulo2">Escriba para generar la expresión postcoordinada:</p>
+            			<input  class="custom-input" id="input-text" type="text" placeholder="Escriba aquí...">
+            		<p style="color: black;" id="titulo3">Seleccione el tipo de generación:</p>
+            		<div class="button-container">
+                		<button class="btn-primary" id="boton1" onclick="validateInput('automatica')">Automática</button>
+                		<button class="btn-primary" id="boton2" onclick="validateInput('guiada')">Guiada</button>
+            		</div>
+        		</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+    		<div class="panel-right" id="panel-right-guiada" style="display: none;">
+    			<div class="title-container">
+        			<h2 id="generacion-g"></h2>
+    			</div>
+    			<div class="termino-clinico">
+        			<p id="termino-clinico" style="display: inline;"> </p><span class="destacado" id="texto-mostrado-g"></span>
+    			</div>
+     <div class="row">
+        <div class="col-md-6">
+            <div class="tipo-semantico" style="margin-top: 44px;">
+                <p style="color: black;" id="titulo4"></p>
+                <select id="tipo-semantico-select" class="custom-select" onchange="habilitarReferencia()">
+                    <option id="titulo-s" value="seleccion"></option>
+                    <option>Problema</option>
+                    <option>Tratamiento</option>
+                    <option>Hallazgo</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="concepto-referencia" style="margin-top: 20px;">
+                <p style="color: black;" id="titulo5"></p>
+                <select id="concepto-referencia-select" class="custom-select" onchange="habilitarRelacion()" disabled>
+                    <option id="titulo-s1" value="seleccion1"></option>
+                    <option value="problema">1</option>
+                    <option value="tratamiento">2</option>
+                    <option value="hallazgo">3</option>  
+                </select>
+            </div>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-md-6">
+            <div id="relacion" style="margin-top: 20px;">
+        			<p style="color: black;" id="titulo6"></p>
+        			<select id="relacion-select" class="custom-select" onchange="habilitarConcepto()" disabled>
+						<option id="titulo-s2" value="seleccion2"></option>
+            			<option>1</option>
+            			<option>2</option>
+            			<option>3</option>	
+            		</select>
+    			</div>
+        </div>
+        <div class="col-md-6">
+            <div id="concepto" style="margin-top: 20px;">
+        			<p style="color: black;" id="titulo7"></p>
+        			<select id="concepto-select" class="custom-select" disabled>
+						<option id="titulo-s3" value="seleccion3"></option>
+            			<option>1</option>
+            			<option>2</option>
+            			<option>3</option>	
+            		</select>
+    			</div>
+        	</div>
+    	</div>
+    	<div class="resultado">
+    		<div class="termino-clinico">
+        		<p id="resultado1"></p>
+    		</div>
+    		<div class="button-container">
+        	<button class="btn-primary rounded" id="boton3" data-toggle="modal" data-target="#myModal">Generar Diagrama</button>
+    		</div>
+		</div>
+		</div>
+    		<div class="panel-right" id="panel-right-automatica" style="display: none;">
+       	 		<div class="title-container">
+        			<h2 id="generacion-a"></h2>
+    			</div>
+    			<div class="termino-clinico">
+        			<p id="termino-clinico1" style="display: inline;"></p><span class="destacado" id="texto-mostrado-a"></span>
+    			</div>
+    			    	<div class="resultado">
+    		<div class="termino-clinico">
+        		<p id="resultado"></p>
+    		</div>
+    		<div class="button-container">
+        	<button class="btn-primary rounded" id="boton31" data-toggle="modal" data-target="#myModal">Generar Diagrama</button>
+    		</div>
+		</div>
+    		</div>
+		</div>
+    </div>
+</div>
+
+<footer class="container-fluid franja-pie um" style="color: white;">
+    <div class="caja-pie">
+        <section id="pie">
+            <div class="banda-pie row">
+                <div class="col-md-7">
+                    <div id="logo-um-pie" class="d-flex">
+                        <a class="um-lr-gtm-principal-pie-logo" href="/" data-senna-off="true">
+                            <img class="img-responsive" src="https://www.um.es/o/um-lr-principal-um-home-theme/images/logo-universidad-de-murcia-blanco.png" alt="Logo Universidad de Murcia">
+                        </a>
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-sm-6 copyright-pie">
+                    <p class="copyright-pie-titulo text-uppercase" id="copyright-title">Universidad de Murcia</p>
+                    <p id="address">Avda. Teniente Flomesta, 5 · 30003 · Murcia<br>
+                        Teléfono: <a href="tel:+34868883000" style="color: white;">+34 868 88 3000</a> (Centralita) /
+                        <a href="tel:+34868888888" style="color: white;">+34 868 88 8888</a> (Información)
+                    </p>
+                </div>
+                <div class="col-md-6 como-llegar-pie">
+                    <p>
+                        <a href="https://www.um.es/departamentos" id="departments-link" class="um-lr-gtm-principal-pie-departamentos">Departamentos</a> -
+                        <a href="https://www.um.es/servicios" id="services-link" class="um-lr-gtm-principal-pie-servicios">Servicios</a>
+                    </p>
+                    <p>
+                        <a href="https://general.um.es/general/inspeccion.buzon" id="mailbox-link" class="um-lr-gtm-principal-pie-buzon">Buzón Universitario</a> -
+                        <a href="https://www.um.es/web/universidad/buzon-del-informante" id="informant-mailbox-link" class="um-lr-gtm-principal-pie-buzon-informante">Buzón del Informante</a> -
+                        <a href="https://www.um.es/web/universidad/lucha-contra-el-fraude" id="fraud-link" class="um-lr-gtm-principal-pie-fraude">Lucha contra el fraude</a> -
+                        <a href="http://dumbo.um.es/" id="dumbo-link" class="um-lr-gtm-principal-pie-dumbo">Sistema DUMBO</a>
+                    </p>
+                    <p>
+                        <a href="https://www.um.es/web/universidad/accesibilidad" id="accessibility-link" class="um-lr-gtm-principal-pie-accesibilidad">Accesibilidad</a> -
+                        <a href="/web/universidad/contenido/como-llegar" id="how-to-get-link" class="um-lr-gtm-principal-pie-como-llegar">Cómo llegar</a> -
+                        <a href="/web/emergencias" id="emergencies-link" class="um-lr-gtm-principal-pie-emergencias">Emergencias</a> -
+                        <a href="/web/ayuda/" id="help-link" class="um-lr-gtm-principal-pie-ayuda">Ayuda</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+
+
+    function changeLanguage(languageCode) {
+       
+       var texts_es = {
+    		'copyright-title': 'Universidad de Murcia',
+    		'address': 'Avda. Teniente Flomesta, 5 · 30003 · Murcia<br> Teléfono: <a href="tel:+34868883000">+34 868 88 3000</a> (Centralita) / <a href="tel:+34868888888">+34 868 88 8888</a> (Información)',
+    		'departments-link': 'Departamentos',
+    		'services-link': 'Servicios',
+    		'mailbox-link': 'Buzón Universitario',
+    		'informant-mailbox-link': 'Buzón del Informante',
+    		'fraud-link': 'Lucha contra el fraude',
+    		'dumbo-link': 'Sistema DUMBO',
+    		'accessibility-link': 'Accesibilidad',
+    		'how-to-get-link': 'Cómo llegar',
+    		'emergencies-link': 'Emergencias',
+    		'help-link': 'Ayuda',
+    		'language-selector__button': 'Español',
+    		'dropdown-item': 'Inglés',
+    		'dropdown-item-text': 'English',
+    		'titulo': '¡Bienvenidos a SNOMED-UMU!',
+    		'titulo2': 'Escriba para generar la expresión postcoordinada:',
+    		'titulo3': 'Seleccione el tipo de generación:',
+    		'boton1': 'Automática',
+    		'boton2': 'Guiada',
+    		'placeholder-input': 'Escriba aqui...',
+    		'resultado': 'Expresión PostCoordinada:',
+    		'resultado1': 'Expresión PostCoordinada:',    		
+    		'generacion-g': 'Generación Guiada',
+    		'generacion-a': 'Generación Automática',
+    		'termino-clinico' : 'Termino Clínico: ',
+    		'termino-clinico1' : 'Termino Clínico: ',
+    		'boton3': 'Generar Diagrama',
+    		'boton31': 'Generar Diagrama',
+    		'titulo4': 'Seleccione un tipo semántico: ',
+    		'titulo5': 'Seleccione un concepto de referencia: ',
+    		'titulo6': 'Seleccione una relación: ',
+    		'titulo7': 'Seleccione un concepto: ',
+    		'titulo-s': 'Selecciona... ',
+			'titulo-s1': 'Selecciona... ',
+			'titulo-s2': 'Selecciona... ',
+			'titulo-s3': 'Selecciona... '
+		};
+
+		var texts_en = {
+    		'copyright-title': 'University of Murcia',
+    		'address': 'Avda. Teniente Flomesta, 5 · 30003 · Murcia<br> Phone: <a href="tel:+34868883000">+34 868 88 3000</a> (Switchboard) / <a href="tel:+34868888888">+34 868 88 8888</a> (Information)',
+    		'departments-link': 'Departments',
+    		'services-link': 'Services',
+    		'mailbox-link': 'University Mailbox',
+    		'informant-mailbox-link': 'Informant Mailbox',
+    		'fraud-link': 'Fraud Prevention',
+    		'dumbo-link': 'DUMBO System',
+    		'accessibility-link': 'Accessibility',
+    		'how-to-get-link': 'How to Get There',
+    		'emergencies-link': 'Emergencies',
+    		'help-link': 'Help',
+    		'language-selector__button': 'English',
+    		'dropdown-item': 'Spanish',
+    		'dropdown-item-text': 'Español',
+    		'titulo': 'Welcome to SNOMED-UMU!',
+    		'titulo2': 'Type to generate the postcoordinated expression:',
+    		'titulo3': 'Select the type of generation:',
+    		'boton1': 'Automatic',
+    		'boton2': 'Guided',
+    		'placeholder-input': 'Type here...',
+    		'resultado': 'PostCoordinated Expression:',
+    		'resultado1': 'PostCoordinated Expression:',
+    		'generacion-g': 'Guided Generation',
+    		'generacion-a': 'Automatic Generation',
+    		'termino-clinico' : 'Clinic Term: ',
+    		'termino-clinico1' : 'Clinic Term: ',
+    		'boton3': 'Generate Diagram',
+    		'boton31': 'Generate Diagram',
+    		'titulo4': 'Select a semantic type: ',
+    		'titulo5': 'Select a reference concept: ',
+    		'titulo6': 'Selecct a relation: ',
+    		'titulo7': 'Select a concept: ',
+			'titulo-s': 'Select... ',
+			'titulo-s1': 'Select... ',
+			'titulo-s2': 'Select... ',
+			'titulo-s3': 'Select... '
+		};
+       
+       var texts = languageCode === 'en' ? texts_en : texts_es;
+       
+        var languageButton = document.getElementById('language-selector__button');
+        if (languageButton) {
+            languageButton.textContent = texts['language-selector__button'];
+        }
+
+        // Cambiar el texto del dropdown item
+        var dropdownItem = document.querySelector('.dropdown-item');
+        if (dropdownItem) {
+            dropdownItem.textContent = texts['dropdown-item'];
+        }
+
+        // Cambiar el texto del atributo aria-label del dropdown menu
+        var dropdownMenu = document.querySelector('.dropdown-menu');
+        if (dropdownMenu) {
+            dropdownMenu.setAttribute('aria-label', texts['dropdown-item-text']);
+        }
+
+       for (var key in texts) {
+            if (texts.hasOwnProperty(key)) {
+                var element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = texts[key];
+                }
+            }
+        }
+        
+        var inputElement = document.getElementById('input-text');
+    	if (inputElement) {
+        	inputElement.placeholder = texts['placeholder-input'];
+    	}
+    }
+    
+     function changeLanguageDropdown() {
+        var languageButton = document.getElementById('language-selector__button');
+        var currentLanguage = languageButton.textContent.trim();
+        if (currentLanguage === 'Español') {
+            changeLanguage('en');
+        } else {
+            changeLanguage('es');
+        }
+    }
+    
+    changeLanguageDropdown();
+
+   	function validateInput(panelId) {
+    var inputText = document.getElementById('input-text').value;
+    if (inputText.trim().length === 0) {
+        alert('¡Debe ingresar un término clínico!');
+        return false;
+    }
+    changePanel(panelId);
+
+    if (panelId === 'automatica') {
+        console.log("Input Text:", inputText); 
+        document.getElementById('texto-mostrado-a').innerText = inputText;
+    } else {
+        document.getElementById('texto-mostrado-g').innerText = inputText;
+    }
+
+    initializeSelect();
+}
+
+	function generatePostCoordinatedExpression(input) {
+    	const language = document.document.lang; // This seems incorrect, should it be document.documentElement.lang?
+    	const url = '/generatePostcoordinatedExpression?clinicalTerm=' + input + '&language=' + language;
+	
+    	fetch(url)
+        	.then(response => response.json())
+        	.then(data => {
+            	console.log(data); // Log the response from the server
+       	 	})
+        	.catch(error => {
+            	console.error('Error al obtener la expresión postcoordinada:', error);
+        	});
+	}
+	 
+    function changePanel(panelId) {
+        if (panelId === 'guiada') {
+            document.getElementById('panel-right-automatica').style.display = 'none';
+            document.getElementById('panel-right-guiada').style.display = 'block';
+        } else {
+            document.getElementById('panel-right-automatica').style.display = 'block';
+            document.getElementById('panel-right-guiada').style.display = 'none';
+        }
+        
+        
+    }
+    
+    function generatePostCoordinatedExpression(input){
+		const language = document.document.lang;
+		
+		const url = '/generatePostcoordinatedExpression?clinicalTerm='+input+'&language='+language;
+			
+		fetch(url)
+        	.then(response => response.json())
+        	.then(data => {
+           		console.log(data);
+        })
+        .catch(error => {
+            console.error('Error al obtener la expresión postcoordinada:', error);
+        });
+	}
+    
+function initializeSelect(){
+    var tipoSemanticoSelect = document.getElementById("tipo-semantico-select");
+    var referenciaSelect = document.getElementById("concepto-referencia-select");
+    var relacionSelect = document.getElementById("relacion-select");
+    var conceptoSelect = document.getElementById("concepto-select");
+
+    tipoSemanticoSelect.value = "seleccion";
+    referenciaSelect.disabled = true;
+    referenciaSelect.value = "seleccion1";
+    relacionSelect.disabled = true;
+    relacionSelect.value = "seleccion2";
+    conceptoSelect.disabled = true;
+    conceptoSelect.value = "seleccion3";
+}
+    
+function habilitarReferencia() {
+    var tipoSemantico = document.getElementById("tipo-semantico-select").value;
+    var referenciaSelect = document.getElementById("concepto-referencia").getElementsByTagName('select')[0];
+    var relacionSelect = document.getElementById("relacion").getElementsByTagName('select')[0];
+    var conceptoSelect = document.getElementById("concepto").getElementsByTagName('select')[0];
+
+    
+    if (tipoSemantico === "seleccion") {
+        referenciaSelect.disabled = true;
+        referenciaSelect.value = "seleccion1";
+        relacionSelect.disabled = true;
+        relacionSelect.value = "seleccion2";
+        conceptoSelect.disabled = true;
+        conceptoSelect.value = "seleccion3";
+        
+    } else {
+        referenciaSelect.disabled = false;
+        referenciaSelect.value = "seleccion1";
+        relacionSelect.disabled = true;
+        relacionSelect.value = "seleccion2";
+        conceptoSelect.disabled = true;
+        conceptoSelect.value = "seleccion3";
+    }
+    
+}
+
+
+function habilitarRelacion() {
+    var referencia = document.getElementById("concepto-referencia-select").value;
+    var relacionSelect = document.getElementById("relacion").getElementsByTagName('select')[0];
+    var conceptoSelect = document.getElementById("concepto").getElementsByTagName('select')[0];
+
+
+    if (referencia === "seleccion1") {
+        relacionSelect.disabled = true;
+        relacionSelect.value = "seleccion2";
+        conceptoSelect.disabled = true;
+    	conceptoSelect.value = "seleccion3";
+    } else {
+        relacionSelect.disabled = false;
+        relacionSelect.value = "seleccion2";
+        conceptoSelect.disabled = true;
+    	conceptoSelect.value = "seleccion3";
+    }
+    
+}
+
+
+function habilitarConcepto() {
+    var relacion = document.getElementById("relacion-select").value;
+    var conceptoSelect = document.getElementById("concepto").getElementsByTagName('select')[0];
+
+
+    if (relacion === "seleccion2") {
+        conceptoSelect.disabled = true;
+    	conceptoSelect.value = "seleccion3";
+    } else {
+        conceptoSelect.disabled = false;
+    	conceptoSelect.value = "seleccion3";
+    }
+}
+
+
+</script>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+     <div class="modal-header">
+        <h4 class="modal-title">Diagrama</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        
+      </div>
+      
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

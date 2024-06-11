@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: auto;
+    }
+    .login-container {
+      max-width: 800px;
+      max-height: 700px;
+      padding: 80px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      background-color: rgb(255, 255, 255);
+      display: flex;
+      flex: 1;
+      margin-bottom: 50px;
+      margin-top: 50px;
+    }
+    .logo-container {
+      margin-right: 40px;
+    }
+    .logo {
+      max-width: 300px;
+      margin-right: 50px;
+      height: auto;
+    }
+    .form-container {
+      flex: 1;
+    }
+    .card-title {
+      color: #005a9e;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .btn {
+      background-color: #005a9e;
+      margin-top: 15px;
+    }
+    .text-center {
+      color: #555;
+      margin-top: 20px;
+    }
+    .text-center a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="login-container">
+        <div class="logo-container">
+          <img src="../imagenes/snomed.png" alt="Logo" class="logo">
+        </div>
+        <div class="form-container">
+          <h2 class="card-title">Iniciar Sesión</h2>
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="usuario">Correo:</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group d-flex flex-column">
+              <button type="button" class="btn btn-primary btn-block" onclick="iniciar_sesion()">Iniciar Sesion</button>
+            </div>
+          </form>
+          <p class="text-center">¿No tienes una cuenta?<br><a href="register.html">Regístrate aquí</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  
+  function iniciar_sesion(){
+  	  const email = document.getElementById('usuario').value;
+      const password = document.getElementById('password').value;
+      
+  	  const url = `http://localhost:8091/usuarios/verificar/${email}/${password}`;	
+		
+      fetch(url)
+         .then(response => {
+    		if (response.ok) {
+      			return response.text();
+    		}
+    		throw new Error('Error en el registro. Por favor, inténtelo de nuevo.');
+  		})
+  		.then(data => {
+    		if (data === email) {
+      			alert('Inicio de sesión exitoso');
+      			const redirectUrl = `index.html?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+                window.location.href = redirectUrl;
+    		} else {
+      			alert('Credenciales incorrectas. Por favor, inténtelo de nuevo.');
+    		}
+  		})
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Error en el registro. Por favor, inténtelo de nuevo.');
+        });
+  }
+  
+  </script>
+</body>
+</html>

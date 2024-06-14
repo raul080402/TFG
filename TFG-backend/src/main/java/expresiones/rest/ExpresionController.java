@@ -119,14 +119,14 @@ public class ExpresionController {
 		
 	}
 	
-	@PutMapping("/validacion/{idExpresion}")
-	public ResponseEntity<String> validacionExpresion(@PathVariable String idExpresion) throws EntidadNoEncontrada{
+	
+	
+	@PostMapping("/validaciones/{idExpresion}")
+	public ResponseEntity<String> validar_expresion(@PathVariable String idExpresion) throws EntidadNoEncontrada{
 		
 		servicio.validar_expresion(idExpresion);
 		
-		return ResponseEntity.ok(idExpresion);
+		return ResponseEntity.noContent().build();
 		
 	}
-	
-	
 }

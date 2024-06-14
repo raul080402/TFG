@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import repositorio.EntidadNoEncontrada;
 import usuarios.modelo.ProyectoDTO;
-import usuarios.modelo.UsuarioDTO;
+import usuarios.modelo.UsuarioDTORegistro;
 import usuarios.servicio.IServicioUsuarios;
 
 @RestController
@@ -32,7 +32,7 @@ public class UsuariosController {
 
 	
 	@PostMapping
-	public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) throws EntidadNoEncontrada {
+	public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTORegistro usuarioDTO) throws EntidadNoEncontrada {
 
 		
 		servicio.crearUsuario(usuarioDTO.getCorreo(), usuarioDTO.getContrasena(), usuarioDTO.getExpertise());

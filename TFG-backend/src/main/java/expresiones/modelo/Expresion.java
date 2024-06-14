@@ -94,12 +94,13 @@ public class Expresion {
 	        Relation relation = iterator.next();	       
 	        if (relation.getConcept_name().equals(r.getConcept_name()) && 
 	            relation.getName().equals(r.getName())) {
-	        	this.add(relation);
-	            return true;
+	        	System.out.println("ENTRA");
+	            return false;
 	        }
 	    }
-	    
-	    return false;
+	    System.out.println("NO ENTRA");
+	    this.add(r);
+	    return true;
 	}
 
 	public Estado getEstado() {
@@ -109,6 +110,5 @@ public class Expresion {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-
 	
 }

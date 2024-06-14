@@ -789,7 +789,9 @@ input[type="text"] {
             <div class="row align-items-center">
                 <div class="col-md-8 text-center text-md-left" id="logo-snomed">
                     <a class="um-lr-gtm-principal-cabecera-logo-um">
-                        <img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU">
+                      <a href="javascript:void(0);" onclick="window.location.reload();">
+        					<img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU">
+    					</a>
                     </a>
                 </div>
                 <div class="col-md-4 text-center text-md-right" id="logo-um">
@@ -889,7 +891,9 @@ input[type="text"] {
             <div class="panel-left">
                <div class="snomed">
             		<a class="snomed">
-                		<img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU" class="snomed-logo">
+                		<a href="javascript:void(0);" onclick="window.location.reload();">
+        					<img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU" class="snomed-logo">
+    					</a>
             		</a>
         		</div>
         		<h2 style="font-weight: bold; font-size: 1.5rem; color: black;" id="titulo1-b"></h2>
@@ -911,14 +915,20 @@ input[type="text"] {
     				<br>
     				<p id="usuario-e" style="display: inline-block; font-size: small;"></p>
     				<span class="destacado" id="texto-usuario-e" style="font-size: small;"></span>
+    				<br>
+    				<p id="estado-e" style="display: inline-block; font-size: small;"></p>
+    				<span class="destacado" id="texto-estado-e" style="font-size: small;"></span>
 				</div>
     			<div class="resultado">
     			<div class="termino-clinico">
         			<p id="resultado-e"></p>
-        			<p style="font-size: 12px;" id="expresion-e"></p>
+        			<p style="font-size: 15px;" id="expresion-e"></p>
     			</div>
     			<div class="button-container">
-    				<button class="btn-primary rounded" id="boton-e" data-toggle="modal" data-target="#myModal">Generar Diagrama</button>
+    				<div style="display: flex; justify-content: center; margin-bottom: 20px;">
+    					<button style="background-color: green; display:none;" class="btn-primary rounded" onclick="verificar()" id="boton-verificar"></button>
+					</div>
+					<button class="btn-primary rounded" id="boton-e" data-toggle="modal" data-target="#myModal"></button>
     			</div>
 			</div>
 			<div class="form-group">
@@ -927,7 +937,7 @@ input[type="text"] {
         			<option value="seleccionar" id="seleccion-edicion"></option>
         			<option value="tipo-semantico" id="tipoSemantico-edicion"></option>
         			<option value="eliminar-relaciones" id="eliminar-edicion"></option>
-        			<option value="añadir-relaciones" id="anadir-edicion"></option>
+        			<option value="anadir-relaciones" id="anadir-edicion"></option>
     			</select>
 			</div>
 			<div id="panel-tipo-semantico" class="panel-tipoEdicion" style="display: none;">
@@ -952,19 +962,18 @@ input[type="text"] {
 
 		</div>
 
-			<div id="panel-añadir-relaciones" class="panel-tipoEdicion" style="display: none;">
-    <label id="relaciones-edicion1"></label>
-    <form>
-        <div class="form-group">
-            <label style="color:black;" for="buscarRelaciones" id="buscar-relaciones"></label>
-            <input type="text" id="buscarRelaciones" name="buscarRelaciones" onkeyup="mostrarRelacionesDropdown()" class="form-control">
-            <div id="relacionesDropdown" class="relaciones-dropdown"></div>
-        </div>
-        <div class="form-group">
-            <label style="color:black;" for="conceptoAsociado" id="concepto-asociado1"></label>
-            <select id="conceptoAsociado" name="conceptoAsociado" class="form-control">
-                
-            </select>
+			<div id="panel-anadir-relaciones" class="panel-tipoEdicion" style="display: none;">
+    				<label id="relaciones-edicion1"></label>
+    				<form>
+       	 			<div class="form-group">
+            			<label style="color:black;" for="buscarRelaciones" id="buscar-relaciones"></label>
+            			<input type="text" id="buscarRelaciones" name="buscarRelaciones" onkeyup="mostrarRelacionesDropdown()" class="form-control">
+            		<div id="relacionesDropdown" class="miembros-dropdown"></div>
+        	</div>
+        		<div class="form-group">
+            	<label style="color:black;" for="conceptoAsociado" id="concepto-asociado1"></label>
+            	<select id="conceptoAsociado" name="conceptoAsociado" class="form-control">
+            	</select>
         </div>
         <div class="boton_crearProyecto">
             <button class="btn btn-primary btn-crear" type="button" onclick="añadir_Relacion()" id="crear-anadirRelacion"></button>
@@ -982,7 +991,9 @@ input[type="text"] {
             <div class="panel-left">
                <div class="snomed">
             		<a class="snomed">
-                		<img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU" class="snomed-logo">
+            			<a href="javascript:void(0);" onclick="window.location.reload();">
+        					<img itemprop="logo" src="../imagenes/snomed.png" alt="Logo SNOMED-UMU" class="snomed-logo">
+    					</a>
             		</a>
         		</div>
         		<h2 style="font-weight: bold; font-size: 1.5rem; color: black;" id="titulo"></h2>
@@ -1285,7 +1296,9 @@ input[type="text"] {
 			'editar-eliminarRelacion': 'Editar',
 			'buscar-relaciones': 'Buscar Relaciones',
 			'crear-anadirRelacion': 'Editar',
-			'usuario-e': 'Creado Por: '
+			'usuario-e': 'Creado Por: ',
+			'estado-e': 'Estado: ',
+			'boton-verificar': 'Verificar'
 		};
        
 		var texts_en = {
@@ -1363,7 +1376,9 @@ input[type="text"] {
 			'editar-eliminarRelacion': 'Edit',
 			'buscar-relaciones': 'Browse Relations',
 			'crear-anadirRelacion': 'Edit',
-			'usuario-e': 'Create By: '
+			'usuario-e': 'Create By: ',
+			'estado-e': 'Status: ',
+			'boton-verificar': 'Verify'
 		};
 	
        language = languageCode;
@@ -1457,10 +1472,6 @@ input[type="text"] {
         var anadir_edicion = document.getElementById('anadir-edicion');
         anadir_edicion.textContent = texts['anadir-edicion'];
         
-        
-        
-        
-        
         var tipoSemantico_edicion2 = document.getElementById('tipoSemantico-edicion2');
         tipoSemantico_edicion2.textContent = texts['tipoSemantico-edicion2']; 
         
@@ -1480,57 +1491,106 @@ input[type="text"] {
         
     }
     
-    
-     const relaciones1 = [
-            { id: 1, name: 'Relación A', conceptos: [{ id: '1', name: 'Concepto A1' }, { id: '2', name: 'Concepto A2' }] },
-            { id: 2, name: 'Relación B', conceptos: [{ id: '3', name: 'Concepto B1' }, { id: '4', name: 'Concepto B2' }] },
-            { id: 3, name: 'Relación C', conceptos: [{ id: '5', name: 'Concepto C1' }, { id: '6', name: 'Concepto C2' }] },
-            { id: 3, name: 'Relación C', conceptos: [{ id: '5', name: 'Concepto C1' }, { id: '6', name: 'Concepto C2' }] },        
-     ];
-
         function mostrarRelacionesDropdown() {
             const input = document.getElementById('buscarRelaciones').value.toLowerCase();
             const dropdown = document.getElementById('relacionesDropdown');
             dropdown.innerHTML = '';
 
-            const filtradas = relaciones1.filter(relacion => relacion.name.toLowerCase().includes(input));
-            filtradas.forEach(relacion => {
-                const div = document.createElement('div');
-                div.className = 'dropdown-item';
-                div.textContent = relacion.name;
-                div.onclick = () => seleccionarRelacion(relacion);
-                dropdown.appendChild(div);
-            });
+            console.log(input);
+            if(input == ''){
+            	dropdown.style.display='none';
+            }else{
+            	dropdown.style.display='block';
+            }
+            
+            var resultado = relacionesAnadir;
+            
+            console.log(relacionesAnadir);
+            
+            const filtradas = resultado.filter(relacion => relacion.relation_name.toLowerCase().includes(input.toLowerCase()))
+            			.sort((a, b) => a.relation_name.localeCompare(b.relation_name));
+    
+           	
+           	filtradas.forEach(relacion => {
+                    const div = document.createElement('div');
+                    div.className = 'miembro-dropdown-item';
+                    div.value = relacion.relation_id;
+                    div.textContent = relacion.relation_name;
+                    div.onclick = () => seleccionarRelacion(relacion);
+                    dropdown.appendChild(div);
+                });
         }
+        
 
-        function seleccionarRelacion(relacion) {
-            document.getElementById('buscarRelaciones').value = relacion.name;
+        async function obtenerConceptos(relacion) {
+            const clinicalTerm = expresion_actual.clinical_term;
+            const relationID = relacion.relation_id;
+            const url = `http://semantics.inf.um.es:5000/getValidConcepts?clinicalTerm=${clinicalTerm}&relationID=${relationID}&language=${language}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data.valid_concepts;
+            } catch (error) {
+                console.error('Error al obtener relaciones:', error);
+                return [];
+            }
+        }
+        
+        var conceptosRelacion;
+
+        async function seleccionarRelacion(relacion) {
+            document.getElementById('buscarRelaciones').value = relacion.relation_name;
             document.getElementById('relacionesDropdown').innerHTML = '';
-
+            
             const select = document.getElementById('conceptoAsociado');
             select.innerHTML = '';
-            relacion.conceptos.forEach(concepto => {
+            
+            conceptosRelacion = await obtenerConceptos(relacion);
+            
+            const conceptosRelacionOrdenados = conceptosRelacion.sort((a, b) => a.concept_name.localeCompare(b.concept_name));
+            
+            
+            conceptosRelacionOrdenados.forEach(concepto => {
                 const option = document.createElement('option');
-                option.value = concepto.id;
-                option.textContent = concepto.name;
+                option.value = concepto.concept_id;
+                option.textContent = concepto.concept_name;
                 select.appendChild(option);
             });
         }
+
 
         function añadir_Relacion() {
            	const idExpresion = expresion_actual.id;
             const relacionSeleccionada = document.getElementById('buscarRelaciones').value;
             const conceptoSeleccionado = document.getElementById('conceptoAsociado').value;
+            expresion_actual.estado = 'REVISADA';
+        
+        	document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+        	if(language == 'en'){
+        		document.getElementById('texto-estado-e').innerText = 'REVIEWED';
+        	}
+        	document.getElementById('texto-estado-e').style.color = '#32CD32';
             
-            const relacion = relaciones1.find(rel => rel.name === relacionSeleccionada);
+        	console.log(relacionesAnadir);
+        	console.log(conceptosRelacion);
+        	console.log(relacionSeleccionada);
+        	console.log(conceptoSeleccionado);
+        	
+        	
+            const relacion = relacionesAnadir.find(rel => rel.relation_name == relacionSeleccionada);
             
-            const concepto = relacion.conceptos.find(con => con.id === conceptoSeleccionado);
+            const concepto = conceptosRelacion.find(con => con.concept_id == conceptoSeleccionado);
 
+            console.log(relacion);
+            console.log(concepto);
+            
+            
             const relationDto = {
-                relation_id: relacion.id,
-                relation_name: relacion.name,
-                target_concept_id: concepto.id,
-                target_concept_name: concepto.name
+                relation_id: relacion.relation_id,
+                relation_name: relacion.relation_name,
+                target_concept_id: concepto.concept_id,
+                target_concept_name: concepto.concept_name
             };
 
             fetch(`http://localhost:8090/expresiones/anadir-relacion/${idExpresion}`, {
@@ -1539,8 +1599,6 @@ input[type="text"] {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(relationDto)
-            })
-            .then(response => {
             })
             .then(data => {
             	expresion_actual.relations.push(relationDto);
@@ -1573,7 +1631,6 @@ input[type="text"] {
             panel.style.display = "block";
         }
         
-        
       	if (opcionSeleccionada === 'tipo-semantico') {
         	tipoSemanticoInput.value = expresion_actual.semantic_type;
     	}else if(opcionSeleccionada === 'eliminar-relaciones'){
@@ -1593,9 +1650,27 @@ input[type="text"] {
         		listaRelaciones.appendChild(li);
     		});
     	}
-        
     }
-   
+    
+    var relacionesAnadir;
+    
+    
+    function cargarRelaciones(){
+    	
+		const url = 'http://semantics.inf.um.es:5000/getValidRelations?clinicalTerm='+expresion_actual.clinical_term+'&language='+language;
+		
+		fetch(url)
+        	.then(response => response.json())
+        	.then(data => {
+        		console.log(data);
+        		relacionesAnadir = data.valid_relations;
+        		console.log(relacionesAnadir);
+        })
+        .catch(error => {
+            console.error('Error al obtener relaciones:', error);
+        });
+    }
+    
     function seleccionarEliminarRelacion(event) {
     	
     	const index = event.target.dataset.index;
@@ -1610,6 +1685,12 @@ input[type="text"] {
 	function eliminarRelacion() {
 	
 		const idExpresion = expresion_actual.id;
+		expresion_actual.estado = 'REVISADA';
+    	document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+    	if(language == 'en'){
+    		document.getElementById('texto-estado-e').innerText = 'REVIEWED';
+    	}
+    	document.getElementById('texto-estado-e').style.color = '#32CD32';
 		
     	const url = `http://localhost:8090/expresiones/borrar-relacion/${idExpresion}`;
     
@@ -1661,6 +1742,12 @@ input[type="text"] {
     function editarTipoSemantico(){
     	const tipoSemantico = document.getElementById('tipo-semantico').value;
     	const idExpresion = expresion_actual.id;
+    	expresion_actual.estado = 'REVISADA';
+    	document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+    	if(language == 'en'){
+    		document.getElementById('texto-estado-e').innerText = 'REVIEWED';
+    	}
+    	document.getElementById('texto-estado-e').style.color = '#32CD32';
     	
     	const url = `http://localhost:8090/expresiones/modificar-tipoSemantico/${idExpresion}/${tipoSemantico}`;
 
@@ -1688,6 +1775,33 @@ input[type="text"] {
        	dibujarDiagrama(expresion_actual);
        	document.getElementById('expresion-e').innerText = c_grammar;
        	
+    }
+    
+    function verificar(){
+    	expresion_actual.estado = 'VALIDADA';
+    	document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+    	if(language == 'en'){
+    		document.getElementById('texto-estado-e').innerText = 'VALIDATED';
+    	}
+    	document.getElementById('texto-estado-e').style.color = '#87CEEB';
+
+    	const id = expresion_actual.id;
+    	
+		const url = `http://localhost:8090/expresiones/validaciones/${id}`;
+		
+    	fetch(url, {
+    		method: 'POST',
+    		headers: {
+        		'Content-Type': 'application/json'
+    		},
+		})
+        .then(data => {
+        	alert('Expresión Verificada Correctamente');
+        })
+        .catch(error => {
+           console.error('Error al añadir verificar:', error);
+        });
+    	
     }
     
     function changeLanguageDropdown() {
@@ -1777,6 +1891,8 @@ input[type="text"] {
     }
 	
 	    
+    var admin;
+    
     function selectProject(projectName) {
     	document.getElementById("proyecto_actual").textContent = projectName;
     	
@@ -1791,9 +1907,21 @@ input[type="text"] {
 		
     	if(projectName === 'Área Personal' || projectName === 'Personal Area'){
     		obtenerExpresionesPersonales(email);
+    		document.getElementById('boton-verificar').style.display = 'none';	
     	}else{
     		obtenerUsuariosByProyecto(projectName);
+    		
+    		const urlParams = new URLSearchParams(window.location.search);
+    		const email = urlParams.get('email');
+    		if(email === admin){
+    			document.getElementById('boton-verificar').style.display = 'block';
+    		}else{
+    			document.getElementById('boton-verificar').style.display = 'none';	
+    		}
     	}
+    	
+    	
+    	
     	closeSidebar();
     	toggleAñadirMiembroButton(projectName);	
     }
@@ -1802,6 +1930,13 @@ input[type="text"] {
       	const añadirMiembroBtn = document.getElementById("añadir_miembro");
       	if (projectName !== 'Área Personal' && projectName !== 'Personal Area') {
       	  añadirMiembroBtn.style.display = 'inline-block';
+      	  const urlParams = new URLSearchParams(window.location.search);
+		  const email = urlParams.get('email');
+		  if(email === admin){
+			  añadirMiembroBtn.style.display = 'inline-block';
+		  }else{
+			  añadirMiembroBtn.style.display = 'none';
+		  }
       	} else {
         	añadirMiembroBtn.style.display = 'none';
       	}
@@ -1820,10 +1955,10 @@ input[type="text"] {
         })
         .then(data => {
         		const clinicTermList = document.getElementById('clinicTerm-lista');
-        
 	
         		data.forEach(e => {
         			expresiones_edicion.push(e);
+        			console.log(e);
             		const listItem = document.createElement('li');
             		listItem.textContent = e.clinical_term; 
             		clinicTermList.appendChild(listItem); 
@@ -1865,8 +2000,10 @@ input[type="text"] {
                   return response.json();
               })
               .then(data => {
+            	  admin = data[0];
+            	  
                   data.forEach(usuario => {
-                	  agregarMiembroAñadir(usuario);
+	               	  agregarMiembroAñadir(usuario);
                       obtenerExpresionesPersonales(usuario);
                   });    
 
@@ -1958,7 +2095,6 @@ input[type="text"] {
 
         const crearProyectoBtn = document.createElement('button');
         crearProyectoBtn.classList.add('crear-proyecto-btn');
-        console.log(language);
         if(language == 'es'){
         	crearProyectoBtn.textContent = 'Crear Proyecto';
         }else{
@@ -2022,6 +2158,19 @@ function ver_Proyecto() {
     obtenerUsuarios();
 }
 
+var m = document.getElementById("miembrosDropdown");
+
+//Agregar un event listener al documento que se active cuando se haga clic
+document.addEventListener("click", function(event) {
+ var targetElement = event.target; // Elemento en el que se hizo clic
+
+ // Comprobar si el clic se realizó fuera del menú desplegable
+ if (targetElement != m && !m.contains(targetElement)) {
+     // Si el clic no fue dentro del menú desplegable, ocultarlo
+     m.style.display = "none";
+ }
+});
+
 function mostrarMiembrosDropdown() {
     const dropdown = document.getElementById("miembrosDropdown");
 	
@@ -2042,6 +2191,7 @@ function mostrarMiembrosDropdown() {
     	const item = document.createElement('div');
    	    item.textContent = m;
         item.classList.add('miembro-dropdown-item');
+        console.log(m);
   	   	item.onclick = () => agregarMiembro(m);
    	    dropdown.appendChild(item);
    	});
@@ -2057,7 +2207,7 @@ document.getElementById('buscarMiembros').addEventListener('keyup', function() {
 // Función para agregar un miembro a la lista de miembros añadidos
 function agregarMiembro(miembro) {
 	const dropdown = document.getElementById("miembrosDropdown");
-    if (!miembrosAñadidosA.includes(miembro)) {
+    if (!miembrosAñadidos.includes(miembro)) {
         miembrosAñadidos.push(miembro);
         const miembroAñadidoDiv = document.createElement('div');
         miembroAñadidoDiv.textContent = miembro;
@@ -2066,6 +2216,7 @@ function agregarMiembro(miembro) {
     }
     dropdown.style.display = 'none';
 }
+
 	function crear(){
 		const nombreProyecto = document.getElementById('nombreProyecto').value;
 		if(nombreProyecto == null || nombreProyecto == ''){
@@ -2079,14 +2230,15 @@ function agregarMiembro(miembro) {
 		const urlParams = new URLSearchParams(window.location.search);
 		const email = urlParams.get('email');
 
-    	miembrosAñadidosElements.forEach(element => {
-        	correosMiembrosAñadidos.push(element.textContent);
-    	});
-    		
     	if (!correosMiembrosAñadidos.includes(email)) {
        		correosMiembrosAñadidos.push(email);        
     	}
-    	
+		
+    	miembrosAñadidosElements.forEach(element => {
+    		if (!correosMiembrosAñadidos.includes(element.textContent)) {
+    			correosMiembrosAñadidos.push(element.textContent);        
+        	}
+    	});
     	
     	const url = `http://localhost:8091/usuarios/proyectos`;
     	fetch(url, {
@@ -2107,14 +2259,15 @@ function agregarMiembro(miembro) {
     	})
     	.then(data => {
         	console.log('Proyecto creado con éxito:', data);
+        	selectProject(nombreProyecto);
+        	document.getElementById("modal-crearProyecto").style.display="none";
     	})
     	.catch(error => {
+    		alert('No se ha podido crear el proyecto por que hay otro proyecto con el mismo nombre');
         	console.error('Error al crear el proyecto:', error);
     	});
     	
-    	selectProject(nombreProyecto);
-    	document.getElementById("modal-crearProyecto").style.display="none";
-    	
+    
 	}
 	
    	
@@ -2149,8 +2302,7 @@ function agregarMiembro(miembro) {
    	});
    	
    	function agregarMiembroAñadir(miembro) {
-   		console.log(miembro);
-		const dropdown = document.getElementById("miembrosDropdown-añadir");
+   		const dropdown = document.getElementById("miembrosDropdown-añadir");
 		
 		
     	
@@ -2185,7 +2337,6 @@ function agregarMiembro(miembro) {
   
 }
    	
-   	
 
 	function generarExpresionguiada(){
 	    const resultado = document.getElementById('resultado1');
@@ -2211,8 +2362,9 @@ function agregarMiembro(miembro) {
 		
 		guardarExpresionGuiada(data);
 		
-	
 		//Generar Expresion PostCoordinada
+			
+    	
 	}
 
 	
@@ -2232,7 +2384,13 @@ function agregarMiembro(miembro) {
        	dibujarDiagrama(expresion_actual);
     	document.getElementById('texto-mostrado-e').innerText = expresion_actual.clinical_term;
     	document.getElementById('expresion-e').innerText = c_grammar;
-		
+    	expresion_actual.estado = 'EN REVISION';
+    	document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+    	if(language == 'en'){
+    		document.getElementById('texto-estado-e').innerText = 'UNDER REVIEWED';
+    	}
+       	document.getElementById('texto-estado-e').style.color = '#FFD700';    	
+    	
 		const clinicTermList = document.getElementById('clinicTerm-lista');
 		
 		for (let i = 0; i < clinicTermList.children.length; i++) {
@@ -2244,10 +2402,14 @@ function agregarMiembro(miembro) {
     		}
 		}
 		
+		cargarRelaciones();
+		
 		document.getElementById("selector-opciones").value = "seleccionar";
 		document.getElementById("panel-tipo-semantico").style.display = "none";
 		document.getElementById("panel-eliminar-relaciones").style.display = "none";
+		document.getElementById("panel-anadir-relaciones").style.display = "none";
 		document.getElementById('concepto-EliminarRelacion').value = '';
+		
 	}
 	
 	function togglePanel() {
@@ -2306,7 +2468,6 @@ function agregarMiembro(miembro) {
 		fetch(url)
         	.then(response => response.json())
         	.then(data => {
-        		console.log(data);
         		guardarExpresion(data);
         		
         })
@@ -2341,8 +2502,7 @@ function agregarMiembro(miembro) {
             expresion_actual.semantic_type = data.semantic_type;
             expresion_actual.idUsuario = email;
         	expresiones_edicion.push(expresion_actual);
-        	console.log(expresion_actual);
-       		var c_grammar = convertirAGramaticaComposicional(expresion_actual);
+        	var c_grammar = convertirAGramaticaComposicional(expresion_actual);
        		dibujarDiagrama(expresion_actual);
        		document.getElementById('expresion').innerText = c_grammar;
 		})
@@ -2378,8 +2538,17 @@ function agregarMiembro(miembro) {
         	expresiones_edicion.unshift(expresion_actual);
        		var c_grammar = convertirAGramaticaComposicional(expresion_actual);
        		dibujarDiagrama(expresion_actual);
-       		console.log(c_grammar);
        		document.getElementById('expresion-g').innerText = c_grammar;
+       		var c_grammar = convertirAGramaticaComposicional(expresion_actual);
+           	dibujarDiagrama(expresion_actual);
+           	
+        	expresion_actual.estado = 'EN REVISION';
+        	document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+        	if(language == 'en'){
+        		document.getElementById('texto-estado-e').innerText = 'UNDER REVIEWED';
+        	}
+           	document.getElementById('texto-estado-e').style.color = '#FFD700';    
+       		
 		})
 		.catch(error => {
     		console.error('Error al crear la expresión:', error);
@@ -2472,7 +2641,6 @@ function convertirAGramaticaComposicional(jsonData) {
         	.then(response => response.json())
         	.then(data => {
         		
-        		
         		var select = document.getElementById("concepto-referencia-select");
         		let firstOption = select.options[0];
 
@@ -2484,23 +2652,26 @@ function convertirAGramaticaComposicional(jsonData) {
     			
     			reference_concepts.forEach(type => {
     				
-    				const url2 = 'http://semantics.inf.um.es:5000/getName?=conceptID'+type+'&language='+language;
+    				const url2 = 'http://semantics.inf.um.es:5000/getName?conceptID='+type+'&language='+language;
     				
-    				fetch(url)
+    				
+    				fetch(url2)
     		        	.then(response => response.json())
     		        	.then(data => {
-    		        		console.log("HJIOLAA");
-    		        		console.log(type);
-    		        		console.log(data);
+    		        		 const name = data.name;
+
+    		                 let option = document.createElement('option');
+    		                 option.value = type;
+    		                 option.text = name;
+
+    		                 // Agrega el nuevo <option> al elemento <select>
+    		                 select.appendChild(option);
     		        })
     		        .catch(error => {
     		            console.error('Error al obtener la expresión postcoordinada:', error);
     		        });
     				
-    				let option = document.createElement('option');
-    				option.value = type;
-    				option.text = type;
-    				select.appendChild(option);
+    				
         		})
         })
         .catch(error => {
@@ -2560,159 +2731,73 @@ function habilitarReferencia() {
     
 }
 
+var relaciones;
 
-const relaciones = [
-    {
-        relation_id: 1,
-        relation_name: 'Relacion A',
-        target_concept_id: 1001,
-        target_concept_name: 'Concepto 1'
-    },
-    {
-        relation_id: 2,
-        relation_name: 'Relacion A',
-        target_concept_id: 1002,
-        target_concept_name: 'Concepto 2'
-    },
-    {
-        relation_id: 3,
-        relation_name: 'Relacion A',
-        target_concept_id: 1003,
-        target_concept_name: 'Concepto 3'
-    },
-    {
-        relation_id: 4,
-        relation_name: 'Relacion B',
-        target_concept_id: 1004,
-        target_concept_name: 'Concepto 4'
-    },
-    {
-        relation_id: 5,
-        relation_name: 'Relacion B',
-        target_concept_id: 1005,
-        target_concept_name: 'Concepto 5'
-    },
-    {
-        relation_id: 6,
-        relation_name: 'Relacion C',
-        target_concept_id: 1006,
-        target_concept_name: 'Concepto 6'
-    },
-    {
-        relation_id: 7,
-        relation_name: 'Relacion C',
-        target_concept_id: 1007,
-        target_concept_name: 'Concepto 7'
-    },
-    {
-        relation_id: 8,
-        relation_name: 'Relacion C',
-        target_concept_id: 1008,
-        target_concept_name: 'Concepto 8'
-    },
-    {
-        relation_id: 9,
-        relation_name: 'Relacion D',
-        target_concept_id: 1009,
-        target_concept_name: 'Concepto 9'
-    },
-    {
-        relation_id: 10,
-        relation_name: 'Relacion E',
-        target_concept_id: 1010,
-        target_concept_name: 'Concepto 10'
-    },
-    {
-        relation_id: 11,
-        relation_name: 'Relacion E',
-        target_concept_id: 1011,
-        target_concept_name: 'Concepto 11'
-    }
-];
-        
-function habilitarRelacion() {
-	
-	var referencia = document.getElementById("concepto-referencia-select").value;
-    
-	console.log(referencia);
-	
-	const url = 'http://localhost:8080/MAIN/relationships?source=725655004&offset=0&limit=50';
-    
-	console.log(url);
-	
-	fetch(url)
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Error al obtener proyectos');
-    })
-    .then(data => {
-        console.log('Proyectos obtenidos:', data);
-        actualizarSidebar(data);
-    })
-    .catch(error => {
-        console.error('Error al obtener proyectos:', error);
-        
-    });
-	
-	const agrupadoPorRelacion = relaciones.reduce((acumulador, actual) => {
-	    const {relation_id, relation_name, target_concept_id, target_concept_name } = actual;
+function agruparRelaciones(data) {
+	relaciones = data.reduce((acc, item) => {
+		  const {relation_name,  relation_id, object_id, object_name } = item;
+		  
+		  if (!acc[relation_id]) {
+			    acc[relation_id] = {
+			      relation_name,
+			      relation_id,
+			      items: []
+			    };
+			  }
 
-	    if (!acumulador[relation_name]) {
-	        acumulador[relation_name] = {
-	        	relation_id: relation_id,
-	            relation_name: relation_name,
-	            conceptos: []
-	        };
-	    }
-
-	    acumulador[relation_name].conceptos.push({
-	        target_concept_id,
-	        target_concept_name
-	    });
-
-	    return acumulador;
-	}, {});
-
-	const resultado1 = Object.values(agrupadoPorRelacion);
-	
-	
-	var resultado = document.getElementById("resultado1");
-	var boton_editar = document.getElementById("boton-editar-2");
-	var boton_diagrama = document.getElementById("boton3");
-    var boton_generar = document.getElementById("boton-generar-e");
-     
-   	if (referencia === "seleccion1") {
-    	document.getElementById("relacion-lista").innerHTML = "";
-    	document.getElementById("concepto-lista").innerHTML = "";
-    	var relacionConceptoMapa = [];
-    	boton_generar.style.display = "none";
-    	
-    } else {
-
-        var relacionLista = document.getElementById("relacion-lista");
-		relacionLista.innerHTML = "";
-
-		console.log(resultado1);
-		
-		resultado1.forEach(relacion => {
-    		var li = document.createElement("li");
-    		li.textContent = relacion.relation_name; 
-    		li.onclick = function() {
-    			relacionSeleccionada = relacion;
-        		habilitarConceptos(relacion.conceptos);
-    		};
-    		relacionLista.appendChild(li);
-		});
-        boton_generar.style.display = "block";
-    }
-    
-    resultado.style.display = "none";
-    boton_editar.style.display = "none";
-    boton_diagrama.style.display = "none";
-    
+		  acc[relation_id].items.push({ object_id, object_name });
+		  return acc;
+		}, {});
 }
+
+function habilitarRelacion() {
+    var referencia = document.getElementById("concepto-referencia-select").value;
+    const url = 'http://semantics.inf.um.es:5000/getRelationsOfConcept?conceptID=' + referencia + '&language=' + language;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+        	
+        	agruparRelaciones(data.relations);
+        	
+            var resultado = document.getElementById("resultado1");
+            var boton_editar = document.getElementById("boton-editar-2");
+            var boton_diagrama = document.getElementById("boton3");
+            var boton_generar = document.getElementById("boton-generar-e");
+
+            var relacionLista = document.getElementById("relacion-lista");
+            relacionLista.innerHTML = "";
+
+            Object.values(relaciones).forEach(relacion => {
+            	  console.log(relacion);
+            	  var li = document.createElement("li");
+            	  li.textContent = relacion.relation_name;
+            	  li.onclick = function() {
+            	    relacionSeleccionada = relacion;
+            	    habilitarConceptos(relacion.items);
+            	  };
+            	  relacionLista.appendChild(li);
+            	});
+
+            if (referencia === "seleccion1") {
+                document.getElementById("concepto-lista").innerHTML = "";
+                var relacionConceptoMapa = [];
+                boton_generar.style.display = "none";
+            } else {
+                boton_generar.style.display = "block";
+            }
+
+            habilitarConceptos();
+            
+            resultado.style.display = "none";
+            boton_editar.style.display = "none";
+            boton_diagrama.style.display = "none";
+        })
+        .catch(error => {
+            console.error('Error al obtener la expresión postcoordinada:', error);
+        });
+}
+
 
 function guardarSeleccion() {
     var conceptosSeleccionados = [];
@@ -2724,9 +2809,9 @@ function guardarSeleccion() {
 }
 
 function habilitarConceptos(conceptos) {
-    var listaConceptos = document.getElementById("concepto-lista");
+
+	var listaConceptos = document.getElementById("concepto-lista");
     var tituloConceptos = document.getElementById("titulo7");
-    
     
     listaConceptos.innerHTML = ""; // Limpiar la lista actual de conceptos
 
@@ -2736,28 +2821,27 @@ function habilitarConceptos(conceptos) {
     	var radio = document.createElement("input");
     	radio.type = "radio"; 
     	radio.name = "concepto"; 
-    	radio.value = concepto.target_concept_name;
+    	radio.value = concepto.object_name;
     	radio.addEventListener('change', function() {
         	conceptoSeleccionado(concepto);
     	});
     	
     	if (relacionConceptoMapa.length > 0) {
     	    relacionConceptoMapa.forEach((relacion) => {
-    	        if (relacion.target_concept_name === concepto.target_concept_name) {
+    	        if (relacion.target_concept_name === concepto.object_name) {
     	           radio.checked = true;
     	        }
     	    });
     	}
     	
     	li.appendChild(radio);
-    	li.appendChild(document.createTextNode(concepto.target_concept_name));
+    	li.appendChild(document.createTextNode(concepto.object_name));
     	listaConceptos.appendChild(li);
 	});
 }
 
 function conceptoSeleccionado(concepto) {
 
-	console.log(concepto);
 	var relaciones = document.querySelectorAll('#relacion-lista li');
     
     relaciones.forEach(function(relacion) {
@@ -2774,11 +2858,11 @@ function conceptoSeleccionado(concepto) {
     	let item = {
     		    relation_id: relacionSeleccionada.relation_id,
     		    relation_name: relacionSeleccionada.relation_name,
-    		    target_concept_id: concepto.target_concept_id,
-    		    target_concept_name: concepto.target_concept_name
+    		    target_concept_id: concepto.object_id,
+    		    target_concept_name: concepto.object_name
     		};
     	relacionConceptoMapa.push(item);
-    	console.log(relacionConceptoMapa);
+    	
     }
    
 }
@@ -2832,6 +2916,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const clinicTermList = document.getElementById('clinicTerm-lista');
     
     
+    
     clinicTermList.addEventListener("click", function(event) {
         if (event.target.tagName === "LI") {
         	document.getElementById("selector-opciones").value = "seleccionar";
@@ -2858,11 +2943,34 @@ document.addEventListener("DOMContentLoaded", function() {
        		dibujarDiagrama(expresion_actual);
     		document.getElementById('texto-mostrado-e').innerText = expresion_actual.clinical_term;
     		document.getElementById('expresion-e').innerText = c_grammar;
+    		document.getElementById('texto-estado-e').innerText = expresion_actual.estado;
+    		
+        	switch (expresion_actual.estado) {
+            case 'EN_REVISION':
+            	if(language == 'en'){
+            		document.getElementById('texto-estado-e').innerText = 'UNDER REVIEW';
+            	}
+            	document.getElementById('texto-estado-e').style.color = '#FFD700';
+                break;
+            case 'REVISADA':
+            	if(language == 'en'){
+            		document.getElementById('texto-estado-e').innerText = 'REVIEWED';
+            	}
+            	document.getElementById('texto-estado-e').style.color = '#32CD32';
+                break;
+            case 'VALIDADA':
+            	if(language == 'en'){
+            		document.getElementById('texto-estado-e').innerText = 'VALIDATED';
+            	}
+            	document.getElementById('texto-estado-e').style.color = '#87CEEB';
+                break;
+        }
             
             event.target.classList.add('selected');
             
             document.getElementById('concepto-EliminarRelacion').value = '';
            	
+            cargarRelaciones();
         }
     });
 });

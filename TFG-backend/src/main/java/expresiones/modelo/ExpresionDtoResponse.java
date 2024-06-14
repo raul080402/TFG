@@ -106,14 +106,13 @@ public class ExpresionDtoResponse {
 		for(RelationDto relacion: relaciones_dto) {
 			Relation r = relacion.toEntity();
 			relaciones.add(r);
-			System.out.println(relacion.toString());
 		}
 		
 		return relaciones;
 	}
 
 	public static ExpresionDtoResponse toDTO(Expresion expresion) {
-		ExpresionDtoResponse dto = new ExpresionDtoResponse(expresion.getId(),expresion.getClinicTerm(),RelationDto.toDTO(expresion.getRelations()), expresion.getSemanticType(), expresion.getIdUsuario());
+		ExpresionDtoResponse dto = new ExpresionDtoResponse(expresion.getId(),expresion.getClinicTerm(),RelationDto.toDTO(expresion.getRelations()), expresion.getSemanticType(), expresion.getIdUsuario(), expresion.getEstado());
 		
 		return dto;
 	}

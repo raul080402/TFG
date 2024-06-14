@@ -25,5 +25,4 @@ public interface IServicioExpresiones {
 	void anadir_relacion(String idExpresion, Relation r) throws EntidadNoEncontrada;
 
 	void validar_expresion(String idExpresion) throws EntidadNoEncontrada;
-	
 }

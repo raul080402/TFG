@@ -99,7 +99,7 @@
     		if (response.ok) {
       			return response.text();
     		}
-    		throw new Error('Error en el registro. Por favor, inténtelo de nuevo.');
+    		throw new Error('Error en el inicio de sesión. Por favor, inténtelo de nuevo.');
   		})
   		.then(data => {
     		if (data === email) {
@@ -112,7 +112,7 @@
   		})
         .catch(error => {
           console.error('Error:', error);
-          alert('Error en el registro. Por favor, inténtelo de nuevo.');
+          alert('Error en el login. Por favor, inténtelo de nuevo.');
         });
   }
   

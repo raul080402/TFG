@@ -71,8 +71,6 @@ public class ServicioExpresiones implements IServicioExpresiones {
 
 		expresion.add(relation);
 		
-		expresion.setEstado(Estado.REVISADA);
-		
 		repo.save(expresion);
 		
 	}
@@ -124,7 +122,7 @@ public class ServicioExpresiones implements IServicioExpresiones {
 		e.setSemanticType(nuevo_tS);
 		
 		e.setEstado(Estado.REVISADA);
-		
+			
 		repo.save(e);
 		
 	}
@@ -170,7 +168,7 @@ public class ServicioExpresiones implements IServicioExpresiones {
 		}
 		
 	}
-
+	
 	@Override
 	public void validar_expresion(String idExpresion) throws EntidadNoEncontrada {
 		
@@ -181,8 +179,10 @@ public class ServicioExpresiones implements IServicioExpresiones {
 		}
 		
 		Expresion e = expresion_o.get();
-		
+			
 		e.setEstado(Estado.VALIDADA);
+		
+		repo.save(e);
 		
 	}
 	

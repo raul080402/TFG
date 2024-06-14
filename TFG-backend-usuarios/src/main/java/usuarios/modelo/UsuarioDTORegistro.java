@@ -1,15 +1,14 @@
 package usuarios.modelo;
 
-public class UsuarioDTO {
+public class UsuarioDTORegistro {
 	
 	private String correo;
 	private String contrasena;
 	private double expertise;
 	
-	public UsuarioDTO(String correo, String contrasena, double expertise) {
+	public UsuarioDTORegistro(String correo, String contrasena, double expertise) {
 		this.correo = correo;
 		this.contrasena = contrasena;
-		this.expertise = expertise;
 	}
 
 	public String getCorreo() {
@@ -21,10 +20,11 @@ public class UsuarioDTO {
 	public String getContrasena() {
 		return contrasena;
 	}
+	
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	
+
 	public double getExpertise() {
 		return expertise;
 	}

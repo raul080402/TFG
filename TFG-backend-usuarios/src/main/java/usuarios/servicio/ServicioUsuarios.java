@@ -30,7 +30,7 @@ public class ServicioUsuarios implements IServicioUsuarios {
 	}
 
 	@Override
-	public String crearUsuario(String correo, String contrasena) {
+	public String crearUsuario(String correo, String contrasena, double expertise) {
 		
 		if(correo == null || correo.isEmpty()) {
 			throw new IllegalArgumentException("El correo del usuario no puede ser nulo");
@@ -44,7 +44,7 @@ public class ServicioUsuarios implements IServicioUsuarios {
 			throw new IllegalArgumentException("Ya existe un usuario con ese correo");
 		}
 		
-		Usuario usuario = new Usuario(correo, contrasena);
+		Usuario usuario = new Usuario(correo, contrasena, expertise);
 		
 		repo_usuarios.save(usuario);
 		
@@ -87,7 +87,9 @@ public class ServicioUsuarios implements IServicioUsuarios {
 			throw new IllegalArgumentException("El nombre del proyecto no puede ser nulo");
 		}
 		
-		Proyecto proyecto = new Proyecto(nombre, correos);
+		
+		
+		Proyecto proyecto = new Proyecto(nombre, correos, correos.get(0));
 		
 		repo_proyectos.save(proyecto);
 		
@@ -109,7 +111,11 @@ public class ServicioUsuarios implements IServicioUsuarios {
 		
 		Proyecto proyecto = proyecto_op.get();
 		
-		return proyecto.getUsuarios();
+		List<String> resultado = proyecto.getUsuarios();
+		
+		resultado.add(0, proyecto.getAdmin());
+		
+		return resultado;
 		
 	}
 
@@ -153,6 +159,7 @@ public class ServicioUsuarios implements IServicioUsuarios {
 			        .anyMatch(c -> c.equals(correo)))
 			    .map(Proyecto::getNombre) 
 			    .collect(Collectors.toList());
+		
 		
 		return resultado;
 		

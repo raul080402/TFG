@@ -6,21 +6,11 @@ public class ProyectoDTO {
 	
 	private String nombre;
 	private List<String> usuarios;
-	private String admin;
+
 	
-	
-	public ProyectoDTO(String nombre, List<String> usuarios, String admin) {
+	public ProyectoDTO(String nombre, List<String> usuarios) {
 		this.nombre = nombre;
 		this.usuarios = usuarios;
-		this.admin = admin;
-	}
-
-	public String getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(String admin) {
-		this.admin = admin;
 	}
 
 	public String getNombre() {

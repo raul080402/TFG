@@ -37,7 +37,8 @@ public class ExpresionController {
 	}
 	
 	@PostMapping("crear/{idUsuario}")
-	public ResponseEntity<String> crearExpresion(@RequestBody ExpresionDto expresion, @PathVariable String idUsuario) throws EntidadNoEncontrada {
+	public ResponseEntity<String> crearExpresion(@RequestBody ExpresionDto expresion, 
+			@PathVariable String idUsuario) throws EntidadNoEncontrada {
 		List<Relation> r = expresion.transformToEntity();
 		
 		String id = servicio.crearExpresion(expresion.getClinicalTerm(), expresion.getSemanticType(), r, idUsuario);
@@ -71,7 +72,8 @@ public class ExpresionController {
 	}
 	
 	@GetMapping("/usuarios/{idUsuario}")
-	public ResponseEntity<List<ExpresionDtoResponse>> getExpresionesByUsuario(@PathVariable String idUsuario){
+	public ResponseEntity<List<ExpresionDtoResponse>> getExpresionesByUsuario
+													(@PathVariable String idUsuario){
 		
 		List<Expresion> expresiones = servicio.getExpresionesByUsuario(idUsuario);
 	    
@@ -87,7 +89,8 @@ public class ExpresionController {
 	
 	
 	@PutMapping("/modificar-tipoSemantico/{idExpresion}/{tipo_semantico}")
-	public ResponseEntity<String> getTerminosClinicos(@PathVariable String idExpresion, @PathVariable String tipo_semantico) throws EntidadNoEncontrada{
+	public ResponseEntity<String> getTerminosClinicos(@PathVariable String idExpresion,
+				@PathVariable String tipo_semantico) throws EntidadNoEncontrada{
 		
 		servicio.modificarTipoSemantico(idExpresion, tipo_semantico);
 	    
@@ -96,7 +99,8 @@ public class ExpresionController {
 	}
 	
 	@PutMapping("/anadir-relacion/{idExpresion}")
-	public ResponseEntity<String> anadirRelacion(@PathVariable String idExpresion, @RequestBody RelationDto relation) throws EntidadNoEncontrada{
+	public ResponseEntity<String> anadirRelacion(@PathVariable String idExpresion,
+			@RequestBody RelationDto relation) throws EntidadNoEncontrada{
 		
 		System.out.println(idExpresion);
 		
@@ -109,7 +113,8 @@ public class ExpresionController {
 	}
 	
 	@PutMapping("/borrar-relacion/{idExpresion}")
-	public ResponseEntity<String> borrarRelacion(@PathVariable String idExpresion, @RequestBody RelationDto relation) throws EntidadNoEncontrada{
+	public ResponseEntity<String> borrarRelacion(@PathVariable String idExpresion, 
+				@RequestBody RelationDto relation) throws EntidadNoEncontrada{
 		
 		Relation r = relation.toEntity();
 		
@@ -122,7 +127,8 @@ public class ExpresionController {
 	
 	
 	@PostMapping("/validaciones/{idExpresion}")
-	public ResponseEntity<String> validar_expresion(@PathVariable String idExpresion) throws EntidadNoEncontrada{
+	public ResponseEntity<String> validar_expresion(@PathVariable String idExpresion) 
+							throws EntidadNoEncontrada{
 		
 		servicio.validar_expresion(idExpresion);
 		

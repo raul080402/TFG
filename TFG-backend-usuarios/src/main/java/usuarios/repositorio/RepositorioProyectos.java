@@ -8,8 +8,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import usuarios.modelo.Proyecto;
 
 @NoRepositoryBean
-public interface RepositorioProyectos extends CrudRepository<Proyecto, String> {
-	
-	
+public interface RepositorioProyectos 
+		extends CrudRepository<Proyecto, String> {
 	
 }

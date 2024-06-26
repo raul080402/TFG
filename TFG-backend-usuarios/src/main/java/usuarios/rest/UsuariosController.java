@@ -32,7 +32,8 @@ public class UsuariosController {
 
 	
 	@PostMapping
-	public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTORegistro usuarioDTO) throws EntidadNoEncontrada {
+	public ResponseEntity<String> crearUsuario(@RequestBody UsuarioDTORegistro usuarioDTO) 
+									throws EntidadNoEncontrada {
 
 		
 		servicio.crearUsuario(usuarioDTO.getCorreo(), usuarioDTO.getContrasena(), usuarioDTO.getExpertise());
@@ -43,7 +44,8 @@ public class UsuariosController {
 
 	
 	@GetMapping("/verificar/{correo}/{contrasena}")
-	public ResponseEntity<String> verificar_credenciales(@PathVariable String correo, @PathVariable String contrasena) throws EntidadNoEncontrada {
+	public ResponseEntity<String> verificar_credenciales(@PathVariable String correo,
+								@PathVariable String contrasena) throws EntidadNoEncontrada {
 		
 		
 		boolean verificado = servicio.verificarUsuario(correo, contrasena);
@@ -57,7 +59,8 @@ public class UsuariosController {
 	}
 
 	@PostMapping("/proyectos")
-	public ResponseEntity<String> crearProyecto(@RequestBody ProyectoDTO proyectoDTO) throws EntidadNoEncontrada {
+	public ResponseEntity<String> crearProyecto(@RequestBody ProyectoDTO proyectoDTO)
+							throws EntidadNoEncontrada {
 
 		
 		servicio.crearProyecto(proyectoDTO.getNombre(), proyectoDTO.getUsuarios());
@@ -77,7 +80,8 @@ public class UsuariosController {
 	}
 	
 	@GetMapping("/proyectos/{correo}")
-	public ResponseEntity<List<String>> getProyectosByusuario(@PathVariable String correo) throws EntidadNoEncontrada {
+	public ResponseEntity<List<String>> getProyectosByusuario(@PathVariable String correo)
+									throws EntidadNoEncontrada {
 		
 		List<String> proyectos = servicio.getAllProyectByUsuario(correo);
 		
